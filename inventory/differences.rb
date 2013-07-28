@@ -1,5 +1,25 @@
-old_inventory = File.open('old-inventory.txt').readlines
-new_inventory = File.open('new-inventory.txt').readlines
+unless ARGV.length == 2
+  puts "Usage: differences.rb old-inventory new-inventory"
+  exit
+end
+
+def boring_word_detected?(line)
+  line.split('/').include?('temp') or
+    line.split('/').include?('recycler')
+end
+
+def load_file(input_file)
+  inventory = File.open(input_file)
+  downcased_chomped_row = inventory.collect do | files_row |
+    files_row.chomp.downcase
+  end
+  downcased_chomped_row.reject do | files_row |
+    boring_word_detected?(files_row)
+  end
+end
+
+old_inventory = load_file(ARGV[0])
+new_inventory = load_file(ARGV[1])
 
 puts "The following files have been added:"
 puts new_inventory - old_inventory
