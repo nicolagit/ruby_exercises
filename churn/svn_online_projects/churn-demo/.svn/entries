@@ -1,0 +1,49 @@
+10
+
+dir
+13
+svn://rubyforge.org/var/svn/churn-demo
+svn://rubyforge.org/var/svn/churn-demo
+
+
+
+2007-01-10T23:46:57.833768Z
+13
+awta
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+a69517fd-701a-0410-8cc4-c92198f07544
+
+audit
+dir
+
+awta
+dir
+
+inventory
+dir
+
+ui
+dir
+
+util
+dir
+
+fulfillment
+dir
+
+persistence
+dir
+
