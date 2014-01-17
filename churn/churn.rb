@@ -22,7 +22,21 @@ def asterisks_for (an_integer)
 end
 
 def change_count_for(name)
-  extract_change_count_from(svn_log(name))
+  extract_change_count_from(svn_log(subsystem, start_date))
+end
+
+def svn_log(subsystem, start_date)
+  timespan = "-revision 'HEAD:{#{start_date}}'"
+  root = "svn://rubyforge.org//var/svn-churn-demo"
+  'svn log #{timespan} #{root}/#(subsystem}'
+end
+
+def extract_change_count_from(log_text)
+  lines = log_text.split("\n")
+  dashed_lines = lines.find_all do | line |
+    line.include?('-----')
+  end
+  dashed_lines.length - 1
 end
 
 if $0 == __FILE__    #(1)

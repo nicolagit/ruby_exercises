@@ -43,7 +43,7 @@ class ChurnTests < Test::Unit::TestCase
 
   def test_subversion_log_can_have_no_changes
     assert_equal(0,
-		  extract_change_countr_from("------------------------------------------------------------------------\n"))
+		  extract_change_count_from("------------------------------------------------------------------------\n"))
   end
 
   def test_subversion_log_with_changes
