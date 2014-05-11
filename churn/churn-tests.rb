@@ -1,8 +1,3 @@
-#---
-# Excerpted from "Everyday Scripting in Ruby"
-# We make no guarantees that this code is fit for any purpose. 
-# Visit http://www.pragmaticprogrammer.com/titles/bmsft for more book information.
-#---
 require 'test/unit' 
 require 'churn'     
 
@@ -15,13 +10,13 @@ class ChurnTests < Test::Unit::TestCase
   end
 
   def test_header_format_direct_and_bootstrap
-    assert_equal("Changes since 2005-08-05:",
-		  header(Time.local(2005, 8, 5)))
+    assert_equal("2005-08-05",
+		  svn_date(Time.local(2005, 8, 5)))
   end
 
   def test_header_format_bootstrap
-    assert_equal("Changes since 2005-08-05:",
-		  header(month_before(Time.local(2005, 9, 2))))
+    assert_equal("2005-08-05",
+		  svn_date(month_before(Time.local(2005, 9, 2))))
   end
 
   def test_normal_subsystem_line_format
