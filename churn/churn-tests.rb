@@ -9,14 +9,19 @@ class ChurnTests < Test::Unit::TestCase
                  month_before(Time.local(2005, 1, 29)))
   end
 
-  def test_header_format_direct_and_bootstrap
+  def test_svn_date_format_direct_and_bootstrap
     assert_equal("2005-08-05",
 		  svn_date(Time.local(2005, 8, 5)))
   end
 
-  def test_header_format_bootstrap
+  def test_svn_date_format_bootstrap
     assert_equal("2005-08-05",
 		  svn_date(month_before(Time.local(2005, 9, 2))))
+  end
+
+  def test_header
+    assert_equal("Changes since 2005-08-05 and #{Time.now.strftime("%Y-%m-%d")}:",
+		  header("2005-08-05"))
   end
 
   def test_normal_subsystem_line_format
@@ -34,6 +39,19 @@ class ChurnTests < Test::Unit::TestCase
 		  asterisks_for(18))
     assert_equal('***',
 		  asterisks_for(17))
+  end
+
+  def test_aterisks_for_near_zero
+    assert_equal("-",
+		  asterisks_for(0))
+    assert_equal("",
+		  asterisks_for(1))
+    assert_equal("",
+		  asterisks_for(2))
+    assert_equal("*",
+		  asterisks_for(3))
+    assert_equal("*",
+		  asterisks_for(4))
   end
 
   def test_subversion_log_can_have_no_changes

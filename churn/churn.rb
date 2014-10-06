@@ -7,7 +7,8 @@ def svn_date(a_time)
 end
 
 def header(an_svn_date)
-  "Changes since #{an_svn_date}:"
+  today = Time.now.strftime("%Y-%m-%d")
+  "Changes since #{an_svn_date} and #{Time.now.strftime("%Y-%m-%d")}:"
 end
 
 def subsystem_line (subsystem_name, change_count)
@@ -16,7 +17,8 @@ def subsystem_line (subsystem_name, change_count)
 end
 
 def asterisks_for (an_integer)
-  '*' * (an_integer / 5.0).round
+  changes = ( an_integer / 5.0 ).round
+  an_integer == 0 ? "-" : "*" * changes
 end
 
 def change_count_for(name, start_date)
